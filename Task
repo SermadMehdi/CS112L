@@ -1,0 +1,280 @@
+#include<iostream>
+using namespace std;
+
+//**************8 FUNCTIONS**************
+
+//**************Copy string 1 to 2*********
+
+char *myStrCpy(char *s1, const char *s2)
+{
+  int i = 0;
+  while(s2[i] != '\0')
+  {
+    s1[i] = s2[i];
+    i++;
+  }
+  s1[i] = '\0';
+
+  return s1;
+}
+
+//***********Copy string to nth character***************
+
+char *myStrnCpy(char *s1, const char *s2, size_t n)
+{
+  int i = 0;
+  while(s2[i] != '\0' && i != n)
+  {
+    s1[i] = s2[i];
+    i++;
+  }
+  s1[i] = '\0';
+  return s1;
+}
+
+//*********Catenation**************
+
+char *myStrCat(char *s1, const char *s2)
+{
+  int i = 0;
+  while(s1[i] != '\0')
+  {
+    i++;
+  }
+  int x = 0;
+  while(s2[x] != '\0')
+  {
+    s1[i] = s2[x];
+    i++;
+    x++;
+  }
+  s1[i] = '\0';
+  return s1;
+}
+//*************Catenation to n ***************
+char *myStrnCat(char *s1, const char *s2, size_t n)
+{
+  int i = 0;
+  while(s1[i] != '\0')
+  {
+    i++;
+  }
+  int x = 0;
+
+  while(s2[x] != '\0' && x != n)
+  {
+    s1[i] = s2[x];
+    i++;
+    x++;
+  }
+  s1[i] = '\0';
+
+  return s1;
+}
+//**********Compare**********
+int myStrCmp(const char *s1, const char *s2)
+{
+  int i = 0;
+  while(s1[i] != '\0' && s2[i] != '\0')
+  {
+    if(s2[i] > s1[i])
+      return -1;
+    else if(s1[i] > s2[i])
+      return 1; 
+    i++;
+  }
+
+  if(s1[i] == s2[i])
+    return 0;
+  else if(s1[i] == '\0')
+    return -1;
+  else if(s2[i] == '\0')
+    return 1;
+
+
+
+  return 5;
+}
+//**************Compare to nth*****************
+int myStrnCmp(const char* s1, const char* s2, size_t n)
+{
+  int i = 0;
+  while((s1[i] != '\0' && s2[i] != '\0') && i != n)
+  {
+    if(s2[i] > s1[i])
+      return -1;
+    else if(s1[i] > s2[i])
+      return 1;
+    i++;
+  }
+  
+  return 0;
+}
+//**********Length****************
+size_t myStrLen(const char *s)
+{
+  int i = 0;
+  while(s[i] != '\0')
+  {
+    i++;
+  }
+  return i;
+}
+
+int post(char *s1, char s2)
+{
+  int i = 0;
+  while(s1[i] != s2)
+  {
+    i++;
+  }
+  return i;
+}
+//*************Token***************
+
+char *myStrTok(char *s1, const char *s2)
+{
+  static int pos = 0;
+  int i = 0;
+  static int length;
+
+  if(pos == 0)
+  {
+    length = myStrLen(s1);
+  }
+
+  while(s1[i] != '\0')
+  {
+    if(i == 0 && pos != 0)
+    {
+      int j = 0;
+      int temp = pos+1;
+      while(j < length-pos)
+      {
+        s1[j] = s1[temp];
+        temp++;
+        j++;
+      }
+      s1[j] = '\0';
+      pos = post(s1, s1[j]);
+    }
+
+    if(s2[0] == s1[i])
+    {
+      s1[i] = '\0';
+      pos = post(s1, s1[i]);
+      return s1;
+    }
+
+    i++;
+  }
+
+  int new_len = myStrLen(s1);
+  if(new_len == 0)
+  {
+  }
+  return s1;
+}
+
+int main()
+{
+	string s1;
+	string s2;
+	
+	cout<<"The 8 functions are following :"<<endl<<endl;
+	cout << "1.Copy the string : \n2.Copy  to nth characters : \n3.Append the strings: \n4.Append to nth characters : \n5.Compare the strings \n6.Compare to nth characters\n7.Token the character\n8.Length of string\n9.Exit";
+    while(1)
+{
+   int x;
+    cout <<endl<< "Enter your Choice Choose: "<<endl<<endl;
+    cin >> x;
+    cin.ignore();
+    if(1 <= x && x <= 6)
+    {
+      cout << "Enter 1st String  \n";
+      getline(cin, s1);
+      cout << "Enter 2nd String  \n";
+      getline(cin, s2);
+    }
+    char *token;
+     int Char;
+    int Answer, i;
+
+    switch(x)
+    {
+      case 1:
+        cout << "The Answer is " << myStrCpy(&s1[0], &s2[0]);
+        break;
+      case 2:
+      	
+        cout << "Enter number of Char\n";
+        cin >> Char;
+        cout << "The Answer is " << myStrnCpy(&s1[0], &s2[0], Char);
+        break;
+      case 3:
+      	
+        cout << "The Answer is " << myStrCat(&s1[0], &s2[0]);
+        break;
+      case 4:
+      	
+        cout << "Enter number of Char\n";
+        cin >> Char;
+       cout << "The Answer is " << myStrnCat(&s1[0], &s2[0], Char);
+        break;
+      case 5:
+      	
+        Answer = myStrCmp(&s1[0], &s2[0]);
+        if(Answer == 0)
+          cout << s1 << " and " << s2 << " are equal\n";
+        else if(Answer < 0)
+          cout << s1 << " is smaller than " << s2 << endl;
+        else
+          cout << s1 << " is greater than " << s2 << endl;
+        break;
+      case 6:
+      	
+        cout << "Enter number of Char\n";
+        cin >> Char;
+        Answer = myStrnCmp(&s1[0], &s2[0], Char);
+        if(Answer == 0)
+          cout << s1 << " and " << s2 << " are equal\n";
+        else if(Answer < 0)
+          cout << s1 << " is smaller than " << s2 << endl;
+        else
+          cout << s1 << " is greater than " << s2 << endl;
+        break;
+      case 7:
+      	
+        i = 2;
+        cout << "Enter string\n";
+        getline(cin, s1);
+        cout << "Enter  character where to stop \n";
+        getline(cin, s2);
+        token = myStrTok(&s1[0], &s2[0]);
+        cout << "Token 1 " << token << endl;
+        while(1)
+        {
+          token = myStrTok(&s1[0], &s2[0]);;
+            break;
+          cout << "Token " << i << " " << token << endl;
+          i++;
+        }
+        break;
+        
+      case 8:
+      	
+        cout << "Enter string\n";
+        getline(cin, s1);
+        cout << "The Answer is " << myStrLen(&s1[0]);
+        break;
+      case 9:
+      	
+        cout << "Good Bye \n";
+        break;
+      default:
+        cout << "Wrong Choice entered \n";
+}
+}
+return 0;
+
+}

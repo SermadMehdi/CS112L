@@ -1,0 +1,70 @@
+#include<iostream>
+#include<iomanip>
+using namespace std;
+
+
+class Heater {
+	private :
+		int temp;
+		public :
+			//constructor
+			Heater() {
+				temp=15;
+			}
+			
+			
+			
+			void warm ()
+			{
+				temp=temp+5;
+			}
+			void cool()
+			{
+				temp=temp-5;
+			}
+			void getwarm(){
+				cout<<temp;
+			}
+		void getcool()
+		{
+			cout<<temp;
+		}
+};
+
+
+int main()
+ {
+ 
+	 
+ 	Heater heat;
+ 	int t;
+ 	cout<<"Initially the temperature is 15"<<endl;
+	 	while(1){
+	 		
+ 	cout<<endl<<"Enter temperature condition"<<endl;
+ 	cout<<"1.Warmer"<<endl<<"2.Cool"<<endl<<"3. Return"<<endl;
+ 	cin>>t;
+ 	switch(t){
+ 		
+ 		case 1: 
+			break;
+		 
+ 	
+ 	heat.warm();
+ 		heat.getwarm();
+ 		break;
+ 		
+ 		case 2:
+ 		
+ 			heat.cool();
+ 			heat.getcool();
+ 			break;
+ 			case 3 : 
+ 			break;
+ 			default :
+ 				cout<<"You entered  invalid input"<<endl;
+	 }
+ 	
+ }
+ 	return 0;
+}

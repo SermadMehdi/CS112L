@@ -11,7 +11,9 @@ class Heater {
 			Heater() {
 				temp=15;
 			}
-			
+			//destructor
+			~Heater(){
+				cout<<"Destructor called "<<endl<<"memory cleared";
 			
 			
 			void warm ()

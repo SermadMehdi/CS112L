@@ -17,7 +17,7 @@ class Parity
         }
 //        ~Parity()
 //        {
-//        	delete arr;
+//        	cout<<"Destructed"<<endl;
 //		}
         // Function prototype 
         void set(int num);
